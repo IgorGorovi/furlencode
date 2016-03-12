@@ -1,10 +1,13 @@
-var app = angular.module("platform",[]);
-
-
 app.controller('main', ['$scope', function($scope){
+	$scope.currentView = 'home';
     $scope.reports = [
-        'Home',
-        'Page Views',
-        'Live Data'
+        'home',
+        'pageviews',
+        'livedata',
+        'timeline'
     ];
+
+    $scope.setView = function (view) {
+    	$scope.currentView = view;
+    }
 }]);
