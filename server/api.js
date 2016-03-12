@@ -10,6 +10,10 @@ var handlers = {
             var doc = utils.prepare(req);
             dbService.send('pageview', doc);
             res.send('welcome !');
+        },
+        'fa-event': function(req, res) {
+            var doc = utils.prepare(req);
+            dbService.send('fa-event', doc);
         }
     },
     "post": {

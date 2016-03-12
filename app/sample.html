@@ -9,12 +9,13 @@
 
 <body>
     <h1> Sample HTML </h1>
+    <button fa-event-type="click" fa-category="Video" fa-action="played">button with click listener</button>
+    <button fa-event-type="click" fa-category="Purchase" fa-action="add to cart">button with click listener</button>
     <!-- main app inclusions ... -->
     <script src="//localhost:7076/static/analytics.js"></script>
     <script>
     var analytics = new Analytics();
     analytics.send('pageview');
-    // });
     </script>
 </body>
 

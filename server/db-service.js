@@ -62,7 +62,11 @@ var post = function(db, type, data) {
             id = 'user:' + data.cookie + ':' + type + ':.' + data.path + ':time:' + Date.now();
             doc._id = id;
             break;
-            //case 'event':
+        case 'fa-event':
+            data.path = url.parse(data.location).pathname;
+            id = 'user:' + data.cookie + ':.' + data.path + ':' + data['fa-event-type'] + ':time:' + Date.now();
+            doc._id = id;
+            break;
     }
     checkDoc(db, doc._id).then(function(headers) {
         //headers.etag will have the revision number from head query.
@@ -82,7 +86,6 @@ module.exports = function(db) {
     return {
         send: function(type, data) {
             //prepare
-            console.log('data', data);
             post(furlen, type, data);
 
         }
