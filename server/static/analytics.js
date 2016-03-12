@@ -9,16 +9,6 @@ var config = {
 var FA = null;
 var TRACKED = {};
 
-// var hitTypes = {
-//     'pageview': function() {
-//         return {
-//             'location': window.location.href,
-//             'title': document.title ? document.title : '',
-//             'path': window.location.href.pathname
-//         }
-//     }
-// }
-
 /*
     I like this approach for sure:
     so fa-event = "<dom-event>" OR
@@ -35,6 +25,7 @@ var TRACKED = {};
                 ATTENTION: important comparison
             */
             if (attribute.name === 'fa-event-type') {
+                console.log('attribute.value', attribute.value);
                 list.push(attribute.value);
             }
         });
@@ -43,25 +34,32 @@ var TRACKED = {};
         TRACKED[attribute] = true;
     });
 })();
-
-window.addEventListener(Object.keys(TRACKED).join(','), function(e) {
-    console.log('*', e.target.attributes);
-    var attribute;
-    var data = {
-        hitType: 'fa-event'
-    };
-    for (var i = 0; i < e.target.attributes.length; i++) {
-        attribute = e.target.attributes[i];
-        // e.target.attributes.forEach(function(attribute) {
-        if (attribute.name.slice(0, 3) === 'fa-') {
-            data[attribute.name] = attribute.value;
+Object.keys(TRACKED).forEach(function(eventType) {
+    console.log(eventType);
+    var genericHandler = function(e) {
+        console.log('*', e);
+        var attribute;
+        var data = {
+            hitType: 'fa-event'
+        };
+        /*
+            console.log(e.target);
+        */
+        for (var i = 0; i < e.target.attributes.length; i++) {
+            attribute = e.target.attributes[i];
+            console.log('attribute', attribute);
+            // e.target.attributes.forEach(function(attribute) {
+            if (attribute.name.slice(0, 3) === 'fa-') {
+                data[attribute.name] = attribute.value;
+            }
         }
-    }
-    // });
-    data.location = window.location.href;
-    FA.send('fa-event', data);
+        // });
+        data.location = window.location.href;
+        FA.send('fa-event', data);
+    };
+    window.addEventListener(eventType, genericHandler);
 });
-
+// window.addEventListener(Object.keys(TRACKED).join(','), );
 /*
     This is our analytics object
 

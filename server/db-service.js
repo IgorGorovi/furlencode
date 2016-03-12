@@ -1,21 +1,3 @@
-/*
-
-    .com/index.html?utm_source=google&
-
-/user/cookie-name
-{
-    type: cookie
-}
-
-/user/cookie-name/page-view/<page-id>/time/<server-time-stamp> {
-    query
-}
-/user/cookie-name/page-view/<page-id>/event/<event-id>
-{
-
-}
-
-*/
 var url = require('url');
 var Q = require('Q');
 var checkDoc = function(db, id) {
