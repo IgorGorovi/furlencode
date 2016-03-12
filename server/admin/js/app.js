@@ -1,4 +1,4 @@
-var app = angular.module("platform",['ui.router'])
+var app = angular.module("platform",['ui.router', 'googlechart'])
 .config(function($stateProvider, $urlRouterProvider) {
   	$urlRouterProvider.otherwise("/");
 
@@ -9,19 +9,20 @@ var app = angular.module("platform",['ui.router'])
             '': { templateUrl: 'views/main.html' },
 
             'home@main': { 
-            	templateUrl: 'views/main/home.html',
+            	templateUrl: 'views/main/home.html'
             },
 
             'pageviews@main': { 
             	templateUrl: 'views/main/pageviews.html',
+              controller: 'PageViewCtrl'
             },
 
             'livedata@main': { 
-            	templateUrl: 'views/main/livedata.html',
+            	templateUrl: 'views/main/livedata.html'
             },
 
             'timeline@main': { 
-            	templateUrl: 'views/main/timeline.html',
+            	templateUrl: 'views/main/timeline.html'
             }
        }
     });
