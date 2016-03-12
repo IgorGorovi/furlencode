@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x
 
 //define static routes
 app.use('/', express.static(__dirname + '/admin'));
+app.use('/static', express.static(__dirname + '/static'));
 
 //init() api routes
 var api = require('./api')(app, 'get', '/api');

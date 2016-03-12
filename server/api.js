@@ -5,7 +5,7 @@
 var handlers = {
     "get": {
         "pageview": function(req, res) {
-            console.log("I am very good !");
+            console.log("I am very good !", req.query);
             res.send('welcome !');
         }
     },
