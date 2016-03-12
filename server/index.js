@@ -15,8 +15,16 @@ app.use(bodyParser.json()); // for parsing application/json
 app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 app.use(cookieParser());
 
+//for CORS
+app.use(function(req, res, next) {
+ res.header("Access-Control-Allow-Origin", "*");
+ res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+ next();
+});
+
 //define static routes
 app.use('/', express.static(__dirname + '/admin'));
+var reports = require('./reports')(app, 'get','/reports');
 //set cookies
 app.use('/', function(req, res, next) {
     // check if client sent cookie
@@ -34,8 +42,8 @@ app.use('/', function(req, res, next) {
     }
     next(); // <-- important!
 });
+
 app.use('/static', express.static(__dirname + '/static'));
 //init() api routes
 var api = require('./api')(app, 'get', '/api');
-
 app.listen(7076);

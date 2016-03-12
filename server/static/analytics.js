@@ -88,8 +88,8 @@ function Analytics() {
         }
         switch (hitType) {
             case 'pageview':
-                data.hitType = hitType,
-                    data.location = window.location.href;
+                data.hitType = hitType;
+                data.location = window.location.href;
                 data.title = document.title ? document.title : '';
                 data.path = window.location.href.pathname;
                 break;

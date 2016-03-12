@@ -41,7 +41,7 @@ var post = function(db, type, data) {
         case 'pageview':
             data.path = url.parse(data.location).pathname;
             //approximation - :. means home or WEBROOT
-            id = 'user:' + data.cookie + ':' + type + ':.' + data.path + ':time:' + Date.now();
+            id = 'user:' + data.cookie + ':.' + data.path + ':' + type + ':time:' + Date.now();
             doc._id = id;
             break;
         case 'fa-event':
@@ -70,6 +70,20 @@ module.exports = function(db) {
             //prepare
             post(furlen, type, data);
 
+        },
+        runView: function(options) {
+            var def = Q.defer();
+            // if (options) {
+                furlen.view('birds-view', 'hawkeye', options, function(err, body) {
+                    if(!err) {
+                        def.resolve(body);
+                    }
+                    else {
+                        def.reject(err);
+                    }
+                });
+            // }
+            return def.promise;
         }
     }
 }

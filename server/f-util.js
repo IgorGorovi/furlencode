@@ -5,8 +5,8 @@ module.exports = {
                 1. ip-
                 2. cookie information
                 3.
-
         */
+
         var doc = {};
         var query = Object.keys(req.query);
         query.forEach(function(q){
