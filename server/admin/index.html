@@ -9,22 +9,31 @@
     <link href="css/main.css" rel="stylesheet" media="screen">
 </head>
 
-<body ng-app="platform" ng-controller="main">
-    <div class="container">
-        <div class="row">
-          <div class="col-md-12">
-            <div id="header"> HEADER </div>
-          </div>
+<body ng-app="platform">
+
+    <div id="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <img src="img/logo.jpg" width="80"/>
+                </div>
+            </div>
         </div>
+    </div>
+    <br/>
+    <div class="container">
         <div ui-view></div>
     </div>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
     <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/angular-google-chart/ng-google-chart.min.js"></script>
     <!-- main app inclusions ... -->
-    <script src="js/app.js"></script>
-    <script src="js/main.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="scripts/controller/main.js"></script>
+    <script src="scripts/controller/main/pageview.js"></script>
+    <script src="scripts/service/pageview.js"></script>
 </body>
 
 </html>
