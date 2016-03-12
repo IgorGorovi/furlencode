@@ -1,12 +1,19 @@
 /*
     uses the 'path': function() {handler} syntax
 */
+var dbService = require('./db-service')();
+var utils = require('./f-util');
 
 var handlers = {
     "get": {
         "pageview": function(req, res) {
-            console.log("I am very good !", req.query);
+            var doc = utils.prepare(req);
+            dbService.send('pageview', doc);
             res.send('welcome !');
+        },
+        'fa-event': function(req, res) {
+            var doc = utils.prepare(req);
+            dbService.send('fa-event', doc);
         }
     },
     "post": {

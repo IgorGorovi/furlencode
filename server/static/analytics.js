@@ -2,98 +2,104 @@ var config = {
     url: 'http://localhost:7076/api'
 }
 
-var hitTypes = {
-    'pageview': function() {
-        return {
-            'location': window.location.href,
-            'title': document.title ? document.title : '',
-            'path': window.location.href.pathname
-        }
-    },
-    'event': {
-        category: null, 
-        action: null, 
-        label: null,
-        value: null
-    }
-}
+/*
+    TRACKED ATTRIBUTE LIST
 
-var analyticsAttributes = {
-    'fa-click' : true
-};
+*/
+var FA = null;
+var TRACKED = {};
 
-var img = document.createElement('img');
+/*
+    I like this approach for sure:
+    so fa-event = "<dom-event>" OR
+    fa-event = "click, mousetouch"
+*/
+(function getAllElementsWithAnalyticAttribute() {
+    var list = [];
 
-function getQueryString(json) {
-    var queryString = ''
-    var keys = Object.keys(json);
-    keys.forEach(function(key) {
-        queryString += queryString ? '&' : ''; //for first time
-        queryString += key + '=' + json[key];
-    })
-    return queryString;
-}
-
-function getAllElementsWithAnalyticAttribute () {
-    var attributes = [];
     var allElements = document.getElementsByTagName('*');
-    for (var i = 0; i < allElements.length; i++)
-    {
-        Array.prototype.slice.call(allElements[i].attributes).forEach(function (attribute) {
-            if (analyticsAttributes[attribute.name]) {
-                attributes.push(attribute.name);
+    // console
+    for (var i = 0; i < allElements.length; i++) {
+        Array.prototype.slice.call(allElements[i].attributes).forEach(function(attribute) {
+            /*
+                ATTENTION: important comparison
+            */
+            if (attribute.name === 'fa-event-type') {
+                console.log('attribute.value', attribute.value);
+                list.push(attribute.value);
             }
+        });
+    }
+    list.forEach(function(attribute) {
+        TRACKED[attribute] = true;
+    });
+})();
+Object.keys(TRACKED).forEach(function(eventType) {
+    console.log(eventType);
+    var genericHandler = function(e) {
+        console.log('*', e);
+        var attribute;
+        var data = {
+            hitType: 'fa-event'
+        };
+        /*
+            console.log(e.target);
+        */
+        for (var i = 0; i < e.target.attributes.length; i++) {
+            attribute = e.target.attributes[i];
+            console.log('attribute', attribute);
+            // e.target.attributes.forEach(function(attribute) {
+            if (attribute.name.slice(0, 3) === 'fa-') {
+                data[attribute.name] = attribute.value;
+            }
+        }
+        // });
+        data.location = window.location.href;
+        FA.send('fa-event', data);
+    };
+    window.addEventListener(eventType, genericHandler);
+});
+// window.addEventListener(Object.keys(TRACKED).join(','), );
+/*
+    This is our analytics object
+
+*/
+function Analytics() {
+    /*
+        this should stay encapsulated here
+
+    */
+    FA = this;
+    var img = document.createElement('img');
+
+    function getQueryString(json) {
+        var queryString = ''
+        var keys = Object.keys(json);
+        keys.forEach(function(key) {
+            queryString += encodeURIComponent(queryString) ? '&' : ''; //for first time
+            queryString += key + '=' + encodeURIComponent(json[key]);
         })
+        return queryString;
     }
 
-    attributes = attributes.filter(function (e, i, arr) {
-        return arr.lastIndexOf(e) === i;
-    });
-
-    return attributes;
-}
-
-var attributeUsed = getAllElementsWithAnalyticAttribute();
-var listeners = '';
-
-attributeUsed.forEach(function (attribute) {
-    listeners += listeners ? ',' : '';
-    listeners += attribute.replace('fa-', '');
-    console.log('listeners :', listeners);
-});
-
-window.addEventListener(listeners, function (e) {
-    var data = {
-        hitType: 'event',
-        category: e.target.getAttribute('fa-' + event.type),
-        action: e.target.getAttribute('fa-action')
-    };
-    console.log(data);
-})
-
-function Analytics() {
     this.send = function(hitType, data) {
         if (!data) {
             data = {};
         }
-
         switch (hitType) {
             case 'pageview':
-                if (!data) data = {};
                 data.hitType = hitType,
-                data.location = window.location.href;
-                data.title =  document.title ? document.title : '';
+                    data.location = window.location.href;
+                data.title = document.title ? document.title : '';
                 data.path = window.location.href.pathname;
                 break;
 
-            case 'event' :
-                if (!data || !data.category && !data.action) return;
+            case 'fa-event':
+                /*
+                    addEventListener registration will take care of publishing data
+                */
                 break;
-
-            default:
-                return; 
         }
-
         img.src = config.url + '/' + hitType + '?' + getQueryString(data);
     }
 }

@@ -15,17 +15,21 @@ var app = angular.module("platform",['ui.router', 'googlechart'])
             	templateUrl: 'views/main/home.html'
             },
 
-            'pageviews@main': { 
+            'pageviews@main': {
             	templateUrl: 'views/main/pageviews.html',
               controller: 'PageViewCtrl'
             },
 
-            'livedata@main': { 
-            	templateUrl: 'views/main/livedata.html'
+            'geography@main': {
+                templateUrl: 'views/main/geography.html'
             },
 
-            'timeline@main': { 
-            	templateUrl: 'views/main/timeline.html'
+            'timeline@main': {
+                templateUrl: 'views/main/timeline.html'
+            },
+
+            'livedata@main': {
+            	templateUrl: 'views/main/livedata.html'
             }
        }
     });
