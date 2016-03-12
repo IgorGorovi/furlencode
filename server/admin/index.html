@@ -16,21 +16,14 @@
             <div id="header"> HEADER </div>
           </div>
         </div>
-        <div class="row">
-            <div class="col-md-3">
-                <ul id="side-nav">
-                    <li ng-repeat="report in reports">
-                        <a href="#"> {{report}} </a> <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
-                    </li>
-                </ul>
-            </div>
-            <div class="col-md-9">.col-md-8</div>
-        </div>
+        <div ui-view></div>
     </div>
     <script src="bower_components/jquery/dist/jquery.js"></script>
     <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/angular-ui-router/release/angular-ui-router.min.js"></script>
     <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
     <!-- main app inclusions ... -->
+    <script src="js/app.js"></script>
     <script src="js/main.js"></script>
 </body>
 
