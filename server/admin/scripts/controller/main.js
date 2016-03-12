@@ -1,4 +1,4 @@
-app.controller('main', ['$scope', function($scope){
+app.controller('mainCtrl', ['$scope', function($scope){
 	$scope.currentView = 'home';
     $scope.reports = [
         'home',

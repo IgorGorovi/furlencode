@@ -6,7 +6,10 @@ var app = angular.module("platform",['ui.router', 'googlechart'])
     .state('main', {
       url: "/",
       views: {
-            '': { templateUrl: 'views/main.html' },
+            '': { 
+              templateUrl: 'views/main.html',
+              controller: 'mainCtrl'
+            },
 
             'home@main': { 
             	templateUrl: 'views/main/home.html'
