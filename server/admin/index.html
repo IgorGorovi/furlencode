@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Welcome to Furlytics </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="css/main.css" rel="stylesheet" media="screen">
+</head>
+
+<body ng-app="platform" ng-controller="main">
+    <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <div id="header"> HEADER </div>
+          </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <ul id="side-nav">
+                    <li ng-repeat="report in reports">
+                        <a href="#"> {{report}} </a> <span class="glyphicon glyphicon-menu-right" aria-hidden="true"></span>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-md-9">.col-md-8</div>
+        </div>
+    </div>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/angular/angular.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- main app inclusions ... -->
+    <script src="js/main.js"></script>
+</body>
+
+</html>

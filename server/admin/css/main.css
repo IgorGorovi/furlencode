@@ -1,0 +1,45 @@
+/*
+    index.html styles
+*/
+a {
+
+}
+a:visited, a:link, a:active, a:focus {
+    text-decoration: none;
+    outline: 0;
+}
+
+#header {
+    background: #ffcccc;
+    padding: 5px;
+}
+
+#side-nav {
+    list-style: none;
+    margin:0;
+    padding: 0;
+}
+
+#side-nav li {
+    background: #ff9933;
+    padding:0;
+    color: white;
+}
+
+#side-nav li a {
+    display: inline-block;
+    padding: 5px;
+    width: 90%;
+}
+/*
+    chevron icons
+*/
+#side-nav li span {
+    display: inline-block;
+    width: 5%;
+}
+
+#side-nav li:hover {
+    background: #cccccc;
+}
+
