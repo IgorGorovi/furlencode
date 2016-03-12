@@ -20,8 +20,8 @@ function getQueryString(json) {
     var queryString = ''
     var keys = Object.keys(json);
     keys.forEach(function(key) {
-        queryString += queryString ? '&' : ''; //for first time
-        queryString += key + '=' + json[key];
+        queryString += encodeURIComponent(queryString) ? '&' : ''; //for first time
+        queryString += key + '=' + encodeURIComponent(json[key]);
     })
     return queryString;
 }
@@ -32,7 +32,6 @@ function Analytics(userId) {
         if (!data) {
             data = hitTypes[hitType]();
         }
-        console.log(config.url + '/' + hitType + '?' + getQueryString(data));
         img.src = config.url + '/' + hitType + '?' + getQueryString(data);
     }
 }
