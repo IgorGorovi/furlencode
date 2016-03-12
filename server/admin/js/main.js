@@ -1,6 +1,3 @@
-var app = angular.module("platform",[]);
-
-
 app.controller('main', ['$scope', function($scope){
 
 	$scope.currentView = 'home';
@@ -8,7 +5,7 @@ app.controller('main', ['$scope', function($scope){
     /*
         All data are real time:
         geography is event ip->geolocation
-        timeline should be filtered for flows and funnels
+        * timeline should be filtered for flows and funnels
         pageviews:
             live pie (total, YTD, 24 hours)
             bar graph of page views
@@ -23,6 +20,9 @@ app.controller('main', ['$scope', function($scope){
         'geography',
         'timeline',
         'livedata'
-
     ];
+
+    $scope.setView = function (view) {
+    	$scope.currentView = view;
+    }
 }]);
