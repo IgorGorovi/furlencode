@@ -1,6 +1,7 @@
 /*
     uses the 'path': function() {handler} syntax
 */
+var url = require('url');
 var reportingService = require('./reporting-service');
 
 var format = function(x, y, docs) {
@@ -11,9 +12,15 @@ var format = function(x, y, docs) {
     console.log(keys);
     keys.forEach(function(key) {
         var a = {};
+        var newKeyTemp, arrayTemp;
         console.log(key);
         if (docs[key]) {
-            a[x] = key;
+            if(key.indexOf('/')>-1) {
+                arrayTemp = key.split('/');
+                newKeyTemp = arrayTemp[arrayTemp.length - 1];
+            }
+            // a[x] = key;
+            a[x] = newKeyTemp;
             a[y] = docs[key];
             array.push(a);
         }
