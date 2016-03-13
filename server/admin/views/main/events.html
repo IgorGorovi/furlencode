@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-md-12">
+        <h1>Events</h1>
+    </div>
+    <div class="col-md-12">
+    	<ul class="nav nav-pills">
+  			<li role="presentation" ng-class="{'active' : currentEvent === 'clicks'}" ng-click="onEventSelect('clicks')"><a href="javascript:void(0)">Clicks</a></li>
+  			<li role="presentation" ng-class="{'active' : currentEvent === 'unloads'}" ng-click="onEventSelect('unloads')"><a href="javascript:void(0)">Exit</a></li>
+  			<li role="presentation" ng-class="{'active' : currentEvent === 'purchase'}" ng-click="onEventSelect('purchase')"><a href="javascript:void(0)">Purchase</a></li>
+		</ul>
+    </div>
+    <div class="col-md-12">
+    	<div google-chart chart="chartObject" style="height:600px; width:100%;"></div>
+    </div>
+</div>

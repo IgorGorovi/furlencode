@@ -1,4 +1,4 @@
-app.controller('mainCtrl', ['$scope', function($scope) {
+app.controller('mainCtrl', ['$scope', 'Events', 'Pageviews', function($scope, Events, Pageviews) {
     $scope.currentView = 'home';
 
     /*
@@ -20,6 +20,9 @@ app.controller('mainCtrl', ['$scope', function($scope) {
         id: 'pageviews',
         name: 'Page view'
     }, {
+        id: 'events',
+        name: 'Events'
+    }, {
         id: 'livedata',
         name: 'Live data'
     }];
@@ -27,4 +30,21 @@ app.controller('mainCtrl', ['$scope', function($scope) {
     $scope.setView = function(view) {
         $scope.currentView = view;
     }
+
+    $scope.clicks = [];
+    $scope.pageViews = [];
+    $scope.exits = [];
+
+    Events.getClicks().then(function(data) {
+        $scope.clicks = data.data;
+    });
+
+    Events.getUnloads().then(function(data) {
+        $scope.exits = data.data;
+    });
+
+    Pageviews.getPageViews().then(function (data) {
+        $scope.pageViews = data.data;
+    });
+
 }]);
