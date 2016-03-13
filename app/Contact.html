@@ -1,66 +1,120 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title> Contact details</title></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
+  <title>Best deals for the week</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <style type="text/css">
+    body { padding-top: 70px; }
+    .jumbotron {
+      color: #2c3e50;
+      background: #ecf0f1;
+
+    }
+    .navbar-inverse {
+      background: #2c3e50;
+      color: white;
+    }
+    .navbar-inverse .navbar-brand, .navbar-inverse a{
+      color:white;
+    }
+    .navbar-inverse .navbar-nav>li>a {
+      color: white;
+    }
+    body{
+        background : #40bf80;
+    }
+
+  </style>
+
 </head>
-<body bgcolor="#40bf80">
-    <h1>Leave a Message</h1>
+<body>
+    	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-nav-demo" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+				<a href="/app/Home.html" class="navbar-brand"><span class="glyphicon glyphicon-picture"></span> Shopping Adda</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-nav-demo">
+				<ul class="nav navbar-nav">
+					<li><a href="/app/Best_offers.html">Best Offers</a></li>
+					<li><a href="/app/Contact.html">Contact</a></li>
+					<li><a href="/app/Download_apps.html">Download apps</a></li>
+					<li><a href="/app/New_Arrivals.html">New Arrivals</a></li>
+					<li><a href="/app/Products.html">Products</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Sign Up</a></li>
+					<li><a href="#">Login</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+  <div class="container">
+
+  <div class="jumbotron">
+    <h1><i class="fa fa-camera-retro"></i></span> Leave a Message</h1>
+    <p></p>
     <form name="htmlform" method="post" action="html_form_send.php">
-<table width="450px">
-</tr>
-<tr>
- <td valign="top">
-  <label for="first_name">First Name *</label>
- </td>
- <td valign="top">
-  <input  type="text" name="first_name" maxlength="50" size="30">
- </td>
-</tr>
- 
-<tr>
- <td valign="top"">
-  <label for="last_name">Last Name *</label>
- </td>
- <td valign="top">
-  <input  type="text" name="last_name" maxlength="50" size="30">
- </td>
-</tr>
-<tr>
- <td valign="top">
-  <label for="email">Email Address *</label>
- </td>
- <td valign="top">
-  <input  type="text" name="email" maxlength="80" size="30">
- </td>
- 
-</tr>
-<tr>
- <td valign="top">
-  <label for="telephone">Telephone Number</label>
- </td>
- <td valign="top">
-  <input  type="text" name="telephone" maxlength="30" size="30">
- </td>
-</tr>
-<tr>
- <td valign="top">
-  <label for="comments">Comments *</label>
- </td>
- <td valign="top">
-  <textarea  name="comments" maxlength="1000" cols="25" rows="6"></textarea>
- </td>
- 
-</tr>
-<tr>
- <td colspan="2" style="text-align:center">
-  <input type="submit" value="Submit">   <a href="http://www.freecontactform.com/html_form.php">
- </td>
-</tr>
-</table>
+ <table width="450px">
+ </tr>
+ <tr>
+  <td valign="top">
+   <label for="first_name">First Name *</label>
+  </td>
+  <td valign="top">
+   <input  type="text" name="first_name" maxlength="50" size="30">
+  </td>
+ </tr>
+  
+ <tr>
+  <td valign="top">
+   <label for="last_name">Last Name *</label>
+  </td>
+  <td valign="top">
+   <input  type="text" name="last_name" maxlength="50" size="30">
+  </td>
+ </tr>
+ <tr>
+  <td valign="top">
+   <label for="email">Email Address *</label>
+  </td>
+  <td valign="top">
+   <input  type="text" name="email" maxlength="80" size="30">
+  </td>
+  
+ </tr>
+ <tr>
+  <td valign="top">
+   <label for="telephone">Telephone Number</label>
+  </td>
+  <td valign="top">
+   <input  type="text" name="telephone" maxlength="30" size="30">
+  </td>
+ </tr>
+ <tr>
+  <td valign="top">
+   <label for="comments">Comments *</label>
+  </td>
+  <td valign="top">
+   <textarea  name="comments" maxlength="1000" cols="25" rows="6"></textarea>
+  </td>
+  
+ </tr>
+ <tr>
+  <td colspan="2" style="text-align:center">
+   <input type="submit" value="Submit">   <a href="http://www.freecontactform.com/html_form.php">
+  </td>
+ </tr>
+ </table>
 </form>
+  </div>
     <!-- main app inclusions ... -->
     <script src="//localhost:7076/static/analytics.js"></script>
     <script>
