@@ -1,18 +1,72 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <title>Shoping Adda</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-</head>
+  <title>Shopping Adda</title>
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+  <style type="text/css">
+    body { padding-top: 70px; }
+    .jumbotron {
+      color: #2c3e50;
+      background: #ecf0f1;
 
+    }
+    .navbar-inverse {
+      background: #2c3e50;
+      color: white;
+    }
+    .navbar-inverse .navbar-brand, .navbar-inverse a{
+      color:white;
+    }
+    .navbar-inverse .navbar-nav>li>a {
+      color: white;
+    } 
+
+  </style>
+
+</head>
 <body>
-    <h1> Sample HTML </h1>
-    <a fa-event-type="unload" fa-external-link="simpragma.com" href="http://www.simpragma.com"> Google.com </a>
-    <button fa-event-type="click" fa-category="Video" fa-action="played">button with click listener</button>
-    <button fa-event-type="click" fa-category="Purchase" fa-action="add to cart">button with click listener</button>
-    <button fa-event-type="click" fa-category="Purchase" fa-action="add to cart">button with click listener</button>
+    	<nav class="navbar navbar-inverse navbar-fixed-top">
+		<div class="container">
+			<div class="navbar-header">
+				 <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-nav-demo" aria-expanded="false">
+	        <span class="sr-only">Toggle navigation</span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	        <span class="icon-bar"></span>
+	      </button>
+				<a href="/app/Home.html" class="navbar-brand"><span class="glyphicon glyphicon-picture"></span> Shopping Adda</a>
+			</div>
+			<div class="collapse navbar-collapse" id="bs-nav-demo">
+				<ul class="nav navbar-nav">
+					<li><a href="/app/Best_offers.html">Best Offers</a></li>
+					<li><a href="/app/Contact.html">Contact</a></li>
+					<li><a href="/app/Download_apps.html">Download apps</a></li>
+					<li><a href="/app/New_Arrivals.html">New Arrivals</a></li>
+					<li><a href="/app/Products.html">Products</a></li>
+				</ul>
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#">Sign Up</a></li>
+					<li><a href="#">Login</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+
+  <div class="container">
+
+  <div class="jumbotron">
+    <h1><i class="fa fa-camera-retro"></i></span> Sample HTML</h1>
+    <p>A eCommerce site</p>
+    <p><a fa-event-type="unload" fa-external-link="simpragma.com" href="http://www.simpragma.com"> Google.com </a>
+    <button class="btn btn-default btn-lg">button with click listener</button>
+    <button class="btn btn-default btn-lg">button with click listener</button></p>
+  </div>
+
+    <!--<a fa-event-type="unload" fa-external-link="simpragma.com" href="http://www.simpragma.com"> Google.com </a>-->
+    <!--<button fa-event-type="click" fa-category="Video" fa-action="played">button with click listener</button>-->
+    <!--<button fa-event-type="click" fa-category="Purchase" fa-action="add to cart">button with click listener</button>-->
+    
     <!-- main app inclusions ... -->
     <script src="//localhost:7076/static/analytics.js"></script>
     <script>
