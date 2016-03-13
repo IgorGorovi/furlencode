@@ -1,4 +1,4 @@
-app.service('Pageviews', function ($http, $q) {
+app.service('Pageviews', function ($http, $q, serviceUrl) {
 
 	var pageviews = [{
 		page: 'home',
@@ -13,7 +13,7 @@ app.service('Pageviews', function ($http, $q) {
 
 	this.getPageViews = function (timestamp) {
 		var def = $q.defer();
-		def.resolve(pageviews);
+		$http.get(serviceUrl + '/reports/piechart').then(def.resolve, def.reject);
 		return def.promise;
 	}
 

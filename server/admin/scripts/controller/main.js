@@ -1,5 +1,5 @@
-app.controller('mainCtrl', ['$scope', function($scope){
-	$scope.currentView = 'home';
+app.controller('mainCtrl', ['$scope', function($scope) {
+    $scope.currentView = 'home';
 
     /*
         All data are real time:
@@ -13,15 +13,24 @@ app.controller('mainCtrl', ['$scope', function($scope){
     */
 
 
-    $scope.reports = [
-        'home',
-        'pageviews',
-        'geography',
-        'timeline',
-        'livedata'
-    ];
+    $scope.reports = [{
+        id: 'home',
+        name: 'Home'
+    }, {
+        id: 'pageviews',
+        name: 'Page view'
+    }, {
+        id: 'geography',
+        name: 'geography'
+    }, {
+        id: 'timeline',
+        name: 'Timeline'
+    }, {
+        id: 'livedata',
+        name: 'Live data'
+    }];
 
-    $scope.setView = function (view) {
-    	$scope.currentView = view;
+    $scope.setView = function(view) {
+        $scope.currentView = view;
     }
 }]);

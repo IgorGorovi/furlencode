@@ -33,4 +33,4 @@ var app = angular.module("platform",['ui.router', 'googlechart'])
             }
        }
     });
-});
+}).constant('serviceUrl', 'http://192.168.2.33:7076');

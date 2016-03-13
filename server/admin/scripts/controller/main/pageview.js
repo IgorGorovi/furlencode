@@ -8,13 +8,13 @@ app.controller("PageViewCtrl", function ($scope, Pageviews) {
         {id: "p", label: "pageviews", type: "number"}
     ], "rows": []};
 
-    $scope.chartObject.options = {
+    /*$scope.chartObject.options = {
         'title': 'Page views'
-    };
+    };*/
 
     Pageviews.getPageViews().then(function (data) {
     	$scope.chartObject.data.rows = [];
-    	data.forEach(function (pageviews) {
+    	data.data.forEach(function (pageviews) {
     		var obj = {
     			c : [{
     				v: pageviews.page
