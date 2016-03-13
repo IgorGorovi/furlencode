@@ -1,5 +1,7 @@
 var url = require('url');
 var Q = require('Q');
+var realtime = require('./realtime');
+
 var checkDoc = function(db, id) {
     var def = Q.defer();
     db.head(id, function(err, _, headers) {
@@ -65,23 +67,27 @@ var post = function(db, type, data) {
 var furlen = null;
 module.exports = function(db) {
     furlen = (!furlen && db) ? db : furlen;
+    /*
+        follow real time updates to the reporting db
+    */
+    realtime(furlen.follow({ since: "now" }));
+
     return {
         send: function(type, data) {
             //prepare
             post(furlen, type, data);
 
         },
-        runView: function(options) {
+        runView: function(options, view) {
             var def = Q.defer();
             // if (options) {
-                furlen.view('birds-view', 'hawkeye', options, function(err, body) {
-                    if(!err) {
-                        def.resolve(body);
-                    }
-                    else {
-                        def.reject(err);
-                    }
-                });
+            furlen.view('birds-view', view, options, function(err, body) {
+                if (!err) {
+                    def.resolve(body);
+                } else {
+                    def.reject(err);
+                }
+            });
             // }
             return def.promise;
         }

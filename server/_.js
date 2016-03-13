@@ -33,7 +33,7 @@ var piechart = function(unique) {
     } else {
         options = {};
     }
-    dbService.runView(options, 'hawkeye').then(function(data) {
+    dbService.runView(options).then(function(data) {
         var summary = {};
         data.rows.forEach(function(row) {
             if (row.value.page) {
@@ -50,20 +50,18 @@ var piechart = function(unique) {
     });
     return def.promise;
 };
-var events = function(type, unique) {
+var clicks = function(unique) {
     var def = Q.defer();
     var options = null;
     if (unique) {
-        options = { startkey: type, endkey: type + '_' };
+        options = { startkey: 'click', endkey: 'click' };
     } else {
         options = {};
     }
-    console.log('%', type, unique, options);
-    dbService.runView(options, 'hawkeye').then(function(data) {
+    dbService.runView(options).then(function(data) {
         var summary = {};
-        console.log(data);
         data.rows.forEach(function(row) {
-            if (row.key === type) {
+            if (row.value.page) {
                 if (summary[row.value.page] === undefined) {
                     summary[row.value.page] = 1;
                 } else {
@@ -71,42 +69,12 @@ var events = function(type, unique) {
                 }
             }
         });
-        console.log(summary);
         def.resolve(summary);
     }, function(err) {
         console.log(err);
     });
     return def.promise;
 };
-
-var kpi = function(category, action, unique) {
-    var def = Q.defer();
-    var options = null;
-    if (unique) {
-        options = { key: { "category": category, "action": action } };
-    } else {
-        options = {};
-    }
-    dbService.runView(options, 'kpi').then(function(data) {
-        var summary = {};
-        data.rows.forEach(function(row) {
-            if (row.key.category === category) {
-                if (summary[row.value.page] === undefined) {
-                    summary[row.value.page] = 1;
-                } else {
-                    summary[row.value.page]++;
-                }
-            }
-        });
-        console.log(summary);
-        def.resolve(summary);
-    }, function(err) {
-        console.log(err);
-    });
-    return def.promise;
-
-
-}
 
 module.exports = {
     get: function(type, unique) {
@@ -115,15 +83,9 @@ module.exports = {
             case 'piechart':
                 promise = piechart(unique);
                 break;
-            case 'clickchart':
-                promise = events('click', unique);
+            case 'clicks':
+                promise = clicks(unique);
                 break
-            case 'exitchart':
-                promise = events('unload', unique);
-                break;
-            case 'purchasechart':
-                promise = kpi('Purchase', 'add to cart', unique);
-                break;
         }
         return promise;
     }

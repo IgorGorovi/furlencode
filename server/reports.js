@@ -3,35 +3,47 @@
 */
 var reportingService = require('./reporting-service');
 
-var format = function(x, y, docs){
+var format = function(x, y, docs) {
+    console.log('*', docs);
     var array = [];
-    console.log(docs);
-    var keys = Object.keys(docs);
-    keys.forEach(function(key){
-        var a = {};
-        a[x] = key;
-        a[y] = docs[key];
-        array.push(a);
-    })
 
-    // [{
-    //     page: 'home',
-    //     page: 10
-    // }, {
-    //     page: 'shop',
-    //     views: 20
-    // }, {
-    //     page: 'cart',
-    //     views: 30
-    // }]
+    var keys = Object.keys(docs);
+    console.log(keys);
+    keys.forEach(function(key) {
+        var a = {};
+        console.log(key);
+        if (docs[key]) {
+            a[x] = key;
+            a[y] = docs[key];
+            array.push(a);
+        }
+    });
     return array;
 }
 
 var handlers = {
     "get": {
         "piechart": function(req, res) {
-            var docs = reportingService.get('piechart', false).then(function(docs){
+            var docs = reportingService.get('piechart', false).then(function(docs) {
                 res.send(format('page', 'views', docs));
+            });
+        },
+        "clickchart": function(req, res) {
+            var docs = reportingService.get('clickchart', false).then(function(docs) {
+                console.log('P', docs);
+                res.send(format('page', 'clicks', docs));
+            });
+        },
+        "exitchart": function(req, res) {
+            var docs = reportingService.get('exitchart', false).then(function(docs) {
+                console.log('E', docs);
+                res.send(format('page', 'exits', docs));
+            });
+        },
+        "purchasechart": function(req, res) {
+            var docs = reportingService.get('purchasechart', false).then(function(docs) {
+                console.log('K', format('page', 'purchase', docs));
+                res.send(format('page', 'purchase', docs));
             });
         }
     },

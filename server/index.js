@@ -17,14 +17,34 @@ app.use(cookieParser());
 
 //for CORS
 app.use(function(req, res, next) {
- res.header("Access-Control-Allow-Origin", "*");
- res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
- next();
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
 });
 
 //define static routes
 app.use('/', express.static(__dirname + '/admin'));
-var reports = require('./reports')(app, 'get','/reports');
+
+//CRAWLER SUPPORT
+app.get('/site/*', function(req, res) {
+    var options = {
+        root: __dirname + '/../app/',
+        dotfiles: 'deny',
+        headers: {
+            'x-timestamp': Date.now(),
+            'x-sent': true
+        }
+    };
+    res.sendFile('sample.html', options, function(err){
+        console.log(err);
+    });
+});
+
+app.get('/site', function(req, res) {
+});
+
+
+var reports = require('./reports')(app, 'get', '/reports');
 //set cookies
 app.use('/', function(req, res, next) {
     // check if client sent cookie

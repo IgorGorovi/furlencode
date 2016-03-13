@@ -1,4 +1,4 @@
-server/node_modules
+**/node_modules
 **/admin/bower_components
 app/bower_components
 Thumbs.db

@@ -45,17 +45,21 @@ Object.keys(TRACKED).forEach(function(eventType) {
         /*
             console.log(e.target);
         */
-        for (var i = 0; i < e.target.attributes.length; i++) {
-            attribute = e.target.attributes[i];
-            console.log('attribute', attribute);
-            // e.target.attributes.forEach(function(attribute) {
-            if (attribute.name.slice(0, 3) === 'fa-') {
-                data[attribute.name] = attribute.value;
+        try {
+            for (var i = 0; i < e.target.attributes.length; i++) {
+                attribute = e.target.attributes[i];
+                console.log('attribute', attribute);
+                // e.target.attributes.forEach(function(attribute) {
+                if (attribute.name.slice(0, 3) === 'fa-') {
+                    data[attribute.name] = attribute.value;
+                }
             }
+            // });
+            data.location = window.location.href;
+            FA.send('fa-event', data);
+        } catch (e) {
+            console.log(e);
         }
-        // });
-        data.location = window.location.href;
-        FA.send('fa-event', data);
     };
     window.addEventListener(eventType, genericHandler);
 });
