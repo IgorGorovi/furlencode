@@ -20,12 +20,6 @@ app.controller('mainCtrl', ['$scope', function($scope) {
         id: 'pageviews',
         name: 'Page view'
     }, {
-        id: 'geography',
-        name: 'geography'
-    }, {
-        id: 'timeline',
-        name: 'Timeline'
-    }, {
         id: 'livedata',
         name: 'Live data'
     }];

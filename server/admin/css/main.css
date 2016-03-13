@@ -53,3 +53,20 @@ a:visited, a:link, a:active, a:focus {
     color: #ffffff !important;
 }
 
+.right-separator {  
+    border-right: 1px solid #888888;
+}
+
+.home-page-col {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.home-page-count {
+    font-size: 50px;
+}
+
+.bold-text {
+    font-weight: bold;
+}
+
