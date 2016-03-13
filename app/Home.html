@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Shoping Adda</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+</head>
+
+<body>
+    <h1> Sample HTML </h1>
+    <a fa-event-type="unload" fa-external-link="simpragma.com" href="http://www.simpragma.com"> Google.com </a>
+    <button fa-event-type="click" fa-category="Video" fa-action="played">button with click listener</button>
+    <button fa-event-type="click" fa-category="Purchase" fa-action="add to cart">button with click listener</button>
+    <!-- main app inclusions ... -->
+    <script src="//localhost:7076/static/analytics.js"></script>
+    <script>
+    var analytics = new Analytics();
+    analytics.send('pageview');
+    </script>
+</body>
+
+</html>
