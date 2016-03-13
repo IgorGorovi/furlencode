@@ -6,12 +6,12 @@ var app = angular.module("platform",['ui.router', 'googlechart'])
     .state('main', {
       url: "/",
       views: {
-            '': { 
+            '': {
               templateUrl: 'views/main.html',
               controller: 'mainCtrl'
             },
 
-            'home@main': { 
+            'home@main': {
             	templateUrl: 'views/main/home.html'
             },
 
@@ -30,4 +30,4 @@ var app = angular.module("platform",['ui.router', 'googlechart'])
             }
        }
     });
-}).constant('serviceUrl', 'http://172.20.10.3:7076');
+}).constant('serviceUrl', 'http://localhost:7076');

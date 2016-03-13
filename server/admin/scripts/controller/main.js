@@ -35,16 +35,24 @@ app.controller('mainCtrl', ['$scope', 'Events', 'Pageviews', function($scope, Ev
     $scope.pageViews = [];
     $scope.exits = [];
 
+    var summer = function(data, key) {
+        var sum = 0;
+        data.forEach(function(o) {
+            sum += o[key];
+        });
+        return sum;
+    }
+
     Events.getClicks().then(function(data) {
-        $scope.clicks = data.data;
+        $scope.clicks = summer(data.data, 'clicks');
     });
 
     Events.getUnloads().then(function(data) {
-        $scope.exits = data.data;
+        $scope.exits = summer(data.data, 'exits');
     });
 
-    Pageviews.getPageViews().then(function (data) {
-        $scope.pageViews = data.data;
+    Pageviews.getPageViews().then(function(data) {
+        $scope.pageViews = summer(data.data, 'views');
     });
 
 }]);

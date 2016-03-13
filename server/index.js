@@ -1,4 +1,5 @@
 //requires
+var fs = require('fs');
 var furlen = require('nano')('http://admin:V3ryS3cur3@localhost:5984/furlencode');
 var express = require('express');
 var bodyParser = require('body-parser');
@@ -26,22 +27,31 @@ app.use(function(req, res, next) {
 app.use('/', express.static(__dirname + '/admin'));
 
 //CRAWLER SUPPORT
-app.get('/site/*', function(req, res) {
+app.get('/site/:name', function(req, res) {
     var options = {
-        root: __dirname + '/../app/',
+        root: __dirname + '/../app/site/',
         dotfiles: 'deny',
         headers: {
             'x-timestamp': Date.now(),
             'x-sent': true
         }
     };
-    res.sendFile('sample.html', options, function(err){
-        console.log(err);
-    });
+    try {
+        console.log('%%%%%%%%', __dirname + '/../app/site/' + req.params.name);
+        fs.accessSync(__dirname + '/../app/site/' + req.params.name, fs.F_OK);
+        res.sendFile(req.params.name, options, function(err) {
+            console.log(err);
+        });
+        // Do something
+    } catch (e) {
+        // It isn't accessible
+        res.sendFile('home.html', options, function(err) {
+            console.log(err);
+        });
+    }
 });
 
-app.get('/site', function(req, res) {
-});
+app.get('/site', function(req, res) {});
 
 
 var reports = require('./reports')(app, 'get', '/reports');
